@@ -34,7 +34,7 @@ defineProps({ houseProp: {type: House}})
 <style lang="scss" scoped>
 
 .house-image { 
-  height: 50vh;
+  height: 70vh;
   width: 100%;
   object-fit: cover;
 }

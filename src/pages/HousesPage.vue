@@ -25,6 +25,9 @@ async function getHouses() {
 
 
 <template>
+    <div class="text-center mt-2">
+        <button class="rounded-pill px-3 py-2 btn btn-dark fw-bold">List House</button>
+    </div>
     <section class="container">
         <div class="row">
             <div v-for="house in houses" :key="house.id" class="col-12">
