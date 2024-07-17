@@ -2,6 +2,10 @@
 @import "./_utilities.scss";
 @import "./loaders.scss";
 
+:root {
+  --gregslist-green: #7ed957;
+}
+
 body {
   overscroll-behavior: none;
 }
@@ -15,9 +19,9 @@ body {
 
 main {
   flex-grow: 1;
+  background-color: var(--gregslist-green);
 }
 
 a {
   text-decoration: none;
 }
-
