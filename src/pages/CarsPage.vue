@@ -42,6 +42,7 @@ async function getCars() {
     </section>
   </div>
 
+  <!-- TODO show off slots -->
   <CarFormModal />
 </template>
 
