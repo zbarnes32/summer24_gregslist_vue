@@ -4,6 +4,12 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class CarsService {
+  async createCar(editableCarData) {
+    const response = await api.post('api/cars', editableCarData)
+    logger.log('CREATED CAR ✨🚗', response.data)
+    const newCar = new Car(response.data)
+    AppState.cars.push(newCar)
+  }
   async getCars() {
     const response = await api.get('api/cars')
     logger.log('GOT CARS 🚓🚗🚙🏎️', response.data)

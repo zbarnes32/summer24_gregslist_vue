@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue';
+import Pop from '../utils/Pop.js';
+import { carsService } from '../services/CarsService.js';
 
 const engineTypes = [
   "unknown",
@@ -26,9 +28,12 @@ const editableCarData = ref({
   imgUrl: ''
 })
 
-function createCar() {
-  console.log('creating car');
-
+async function createCar() {
+  try {
+    await carsService.createCar(editableCarData.value) // NOTE this is a ref object, we have to pass down the value stored inside of the ref
+  } catch (error) {
+    Pop.error(error)
+  }
 }
 </script>
 
