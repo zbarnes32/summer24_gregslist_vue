@@ -1,10 +1,15 @@
 <script setup>
+import { computed } from 'vue';
 import { Car } from '../models/Car.js'
 import { carsService } from '../services/CarsService.js';
 import Pop from '../utils/Pop.js';
+import { AppState } from '../AppState.js';
 
 // NOTE allows this component to take in a car object when injected into another component
 defineProps({ carProp: { type: Car } })
+
+const account = computed(() => AppState.account)
+
 
 async function destroyCar(carId) {
   try {
@@ -33,8 +38,11 @@ async function destroyCar(carId) {
         <div>
           <h3>Listed on {{ carProp.createdAt.toLocaleDateString() }}</h3>
           <p>{{ carProp.description }}</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <button @click="destroyCar(carProp.id)" class="btn btn-outline-danger" title="Delete Car" type="button">
+          <div class="d-flex align-items-center"
+            :class="account?.id == carProp.creatorId ? 'justify-content-between' : 'justify-content-end'">
+            <!-- NOTE don't forget elvis, because the account is not set in the appstate before these cards render -->
+            <button v-if="account?.id == carProp.creatorId" @click="destroyCar(carProp.id)"
+              class="btn btn-outline-danger" title="Delete Car" type="button">
               <i class="mdi mdi-close-octagon fs-3"></i>
             </button>
             <img :src="carProp.creator.picture" :alt="carProp.creator.name"
