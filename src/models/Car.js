@@ -7,7 +7,7 @@ export class Car {
     this.year = data.year
     this.price = data.price
     this.description = data.description
-    this.color = data.color
+    this.color = data.color || '#000000'
     this.engineType = data.engineType
     this.creatorId = data.creatorId
     this.creator = data.creator
