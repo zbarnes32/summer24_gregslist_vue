@@ -1,8 +1,20 @@
 <script setup>
 import { Car } from '../models/Car.js'
+import { carsService } from '../services/CarsService.js';
+import Pop from '../utils/Pop.js';
 
 // NOTE allows this component to take in a car object when injected into another component
 defineProps({ carProp: { type: Car } })
+
+async function destroyCar(carId) {
+  try {
+    const wantsToDelete = await Pop.confirm('Are you sure you want to delete your car?')
+    if (!wantsToDelete) return
+    await carsService.destroyCar(carId)
+  } catch (error) {
+    Pop.error(error)
+  }
+}
 
 </script>
 
@@ -21,7 +33,10 @@ defineProps({ carProp: { type: Car } })
         <div>
           <h3>Listed on {{ carProp.createdAt.toLocaleDateString() }}</h3>
           <p>{{ carProp.description }}</p>
-          <div class="text-end">
+          <div class="d-flex justify-content-between align-items-center">
+            <button @click="destroyCar(carProp.id)" class="btn btn-outline-danger" title="Delete Car" type="button">
+              <i class="mdi mdi-close-octagon fs-3"></i>
+            </button>
             <img :src="carProp.creator.picture" :alt="carProp.creator.name"
               :title="`Contact ${carProp.creator.name} for more information`" class="creator-picture">
           </div>

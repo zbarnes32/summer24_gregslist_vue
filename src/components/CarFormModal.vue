@@ -17,7 +17,6 @@ const engineTypes = [
   "large",
   "chuncko"
 ]
-
 const editableCarData = ref({
   make: '',
   model: '',
