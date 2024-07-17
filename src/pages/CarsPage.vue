@@ -4,6 +4,8 @@ import Pop from '../utils/Pop.js';
 import { carsService } from '../services/CarsService.js';
 import { AppState } from '../AppState.js';
 import CarCard from '../components/CarCard.vue';
+import FormModal from '../components/FormModal.vue';
+import CarForm from '../components/CarForm.vue';
 
 const cars = computed(() => AppState.cars)
 
@@ -48,7 +50,17 @@ async function getCars() {
   </div>
 
   <!-- TODO show off slots -->
-  <CarFormModal />
+  <!-- NOTE if your prop is a string, you don't have to bind a value -->
+  <FormModal modalId="carFormModal">
+    <!-- targets the slot with name of 'modalHeader' and injects whatever is between the template tags -->
+    <template #modalHeader>
+      Create Car
+    </template>
+    <!-- targets the slot with name of 'modalBody' and injects whatever is between the template tags -->
+    <template #modalBody>
+      <CarForm />
+    </template>
+  </FormModal>
 </template>
 
 
