@@ -27,7 +27,12 @@ async function getCars() {
 <template>
   <div class="container">
     <section class="row">
-      <h1>Cars</h1>
+      <div class="col-12">
+        <div class="d-flex align-items-center gap-3">
+          <h1>Cars</h1>
+          <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#carFormModal">Create Car Listing</button>
+        </div>
+      </div>
     </section>
     <section class="row">
       <div v-for="car in cars" :key="car.id" class="col-12 mb-3">
@@ -36,6 +41,8 @@ async function getCars() {
       </div>
     </section>
   </div>
+
+  <CarFormModal />
 </template>
 
 
