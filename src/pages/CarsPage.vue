@@ -3,6 +3,7 @@ import { computed, onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
 import { carsService } from '../services/CarsService.js';
 import { AppState } from '../AppState.js';
+import CarCard from '../components/CarCard.vue';
 
 const cars = computed(() => AppState.cars)
 
@@ -27,7 +28,7 @@ async function getCars() {
   <div class="container">
     <section class="row">
       <div v-for="car in cars" :key="car.id" class="col-12">
-        {{ car.make }} {{ car.model }}
+        <CarCard :carProp="car" />
       </div>
     </section>
   </div>
