@@ -28,6 +28,7 @@ async function getCars() {
   <div class="container">
     <section class="row">
       <div v-for="car in cars" :key="car.id" class="col-12">
+        <!-- NOTE carProp is the name of my prop in the CarCard, and car is the value being passed down -->
         <CarCard :carProp="car" />
       </div>
     </section>
