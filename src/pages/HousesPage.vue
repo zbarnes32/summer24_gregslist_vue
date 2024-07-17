@@ -4,6 +4,7 @@ import { computed, onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
 import { housesService } from '../services/HousesService.js';
 import { AppState } from '../AppState.js';
+import HouseCard from '../components/HouseCard.vue';
 
 onMounted(() => {
     getHouses()
@@ -27,7 +28,7 @@ async function getHouses() {
     <section class="container">
         <div class="row">
             <div v-for="house in houses" :key="house.id" class="col-12">
-                {{ house.year }}
+                <HouseCard :houseProp="house"/>
             </div>
         </div>
     </section>
