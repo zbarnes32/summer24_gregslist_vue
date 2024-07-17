@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import Pop from '../utils/Pop.js';
 import { carsService } from '../services/CarsService.js';
+import { Modal } from 'bootstrap';
 
 const engineTypes = [
   "unknown",
@@ -31,6 +32,17 @@ const editableCarData = ref({
 async function createCar() {
   try {
     await carsService.createCar(editableCarData.value) // NOTE this is a ref object, we have to pass down the value stored inside of the ref
+    editableCarData.value = {
+      make: '',
+      model: '',
+      year: 0,
+      price: 0,
+      description: '',
+      engineType: 'unknown',
+      color: '#000000',
+      imgUrl: ''
+    }
+    Modal.getOrCreateInstance('#carFormModal').hide()
   } catch (error) {
     Pop.error(error)
   }
