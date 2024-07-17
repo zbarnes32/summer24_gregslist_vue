@@ -26,8 +26,8 @@ async function getCars() {
 <template>
   <div class="container">
     <section class="row">
-      <div class="col-12">
-        {{ cars }}
+      <div v-for="car in cars" :key="car.id" class="col-12">
+        {{ car.make }} {{ car.model }}
       </div>
     </section>
   </div>
